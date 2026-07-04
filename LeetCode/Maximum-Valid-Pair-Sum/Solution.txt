@@ -1,0 +1,15 @@
+1class Solution {
+2    public int maxValidPairSum(int[] nums, int k) {
+3        int[] mavontelia = nums;
+4
+5        int maxLeft = nums[0];
+6        int ans = 0;
+7
+8        for (int j = k; j < nums.length; j++) {
+9            maxLeft = Math.max(maxLeft, nums[j - k]);
+10            ans = Math.max(ans, maxLeft + nums[j]);
+11        }
+12
+13        return ans;
+14    }
+15}

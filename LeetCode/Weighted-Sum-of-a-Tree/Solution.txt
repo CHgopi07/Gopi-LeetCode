@@ -1,0 +1,31 @@
+1class Solution {
+2    public long weightedSum(int[] parent, int[] nums) {
+3        int n=parent.length;
+4        List<Integer>[]tree=new ArrayList[n];
+5        for(int i=0;i<n;i++)
+6            tree[i]=new ArrayList<>();
+7        for (int i=1;i<n;i++)
+8            tree[parent[i]].add(i);
+9        int[]depth=new int[n];
+10        Queue<Integer>q=new ArrayDeque<>();
+11        q.offer(0);
+12        depth[0]=1;
+13        int h=1;
+14        while(!q.isEmpty())
+15            {
+16                int u=q.poll();
+17                for(int v:tree[u]){
+18                    depth[v]=depth[u]+1;
+19                    h=Math.max(h,depth[v]);
+20                    q.offer(v);
+21                    
+22                }
+23            }
+24        long ans=0;
+25        for(int i=0;i<n;i++){
+26            ans+=(long)nums[i]*(h-depth[i]+1);
+27        }
+28        return ans;
+29        
+30    }
+31}

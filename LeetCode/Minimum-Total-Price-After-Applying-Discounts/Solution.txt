@@ -1,0 +1,15 @@
+1class Solution {
+2    public double minPrice(int[] prices, int[] discounts) {
+3        Integer []p=Arrays.stream(prices).boxed().toArray(Integer[]::new);
+4        Integer[]d=Arrays.stream(discounts).boxed().toArray(Integer[]::new);
+5        Arrays.sort(p,Collections.reverseOrder());
+6        Arrays.sort(d,Collections.reverseOrder());
+7        double total =0;
+8        for(int i=0;i<p.length;i++)
+9            {
+10                total +=i<d.length?p[i]*(100.0 - d[i])/100 :p[i];
+11            }
+12        return total;
+13        
+14    }
+15}

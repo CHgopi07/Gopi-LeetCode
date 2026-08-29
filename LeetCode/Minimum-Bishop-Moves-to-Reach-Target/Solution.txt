@@ -1,0 +1,18 @@
+1class Solution {
+2    public int minBishopMoves(int[] source, int[] target) {
+3        int r1=source[0];
+4        int c1=source[1];
+5        int r2=target[0];
+6        int c2=target[1];
+7        if(r1==r2&&c1==c2)
+8            return 0;
+9        boolean sameColor=((r1+c1)&1)==((r2+c2)&1);
+10        if(!sameColor)
+11            return -1;
+12        boolean sameDiagonal=(r1-c1)==(r2-c2)||(r1+c1)==(r2+c2);
+13        if(sameDiagonal)
+14            return 1;
+15        return 2;
+16        
+17    }
+18}

@@ -1,0 +1,21 @@
+1class Solution {
+2    public int countSpecialIntegers(int[] nums) {
+3        Set<Integer>seen=new HashSet<>();
+4        Set<Integer>special=new HashSet<>();
+5        int prev=-1;
+6        for(int x:nums){
+7            if(x!=prev){
+8                if(seen.contains(x))
+9                {
+10                    special.remove(x);
+11                }else{
+12                    seen.add(x);
+13                    special.add(x);
+14                }
+15            }
+16            prev=x;
+17        }
+18        return special.size();
+19        
+20    }
+21}

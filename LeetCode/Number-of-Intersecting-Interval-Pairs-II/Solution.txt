@@ -1,0 +1,24 @@
+1class Solution {
+2    public long countIntersectingIntervals(int[][] intervals) {
+3        int n=intervals.length;
+4        int []starts=new int[n];
+5        int []ends=new int[n];
+6        for(int i=0;i<n;i++){
+7            starts[i]=intervals[i][0];
+8            ends[i]=intervals[i][1];
+9        }
+10        Arrays.sort(starts);
+11        Arrays.sort(ends);
+12        long nonIntersecting=0;
+13        int endptr=0;
+14        for(int i=0;i<n;i++){
+15            while(endptr<n&&ends[endptr]<starts[i]){
+16                endptr++;
+17            }
+18            nonIntersecting+=endptr;
+19        }
+20        long totalpairs=(long)n*(n-1)/2;
+21        return totalpairs-nonIntersecting;
+22        
+23    }
+24}

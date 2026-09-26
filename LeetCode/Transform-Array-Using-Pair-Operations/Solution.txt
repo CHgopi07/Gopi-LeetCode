@@ -1,0 +1,12 @@
+1class Solution {
+2    public boolean canTransform(int[] source, int[] target) {
+3        long sum1=0;
+4        long sum2=0;
+5        for(int i=0;i<source.length;i++){
+6            sum1+=source[i];
+7            sum2+=target[i];
+8        }
+9        return sum1==sum2;
+10        
+11    }
+12}

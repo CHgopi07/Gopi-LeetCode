@@ -1,0 +1,73 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class BSTIterator {
+    private Deque<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+        stack = new ArrayDeque<>();
+        pushAllLeft(root);
+    }
+    
+   
+    public int next() {
+      
+        TreeNode topNode = stack.pop();
+        
+        
+        if (topNode.right != null) {
+            pushAllLeft(topNode.right);
+        }
+        
+        return topNode.val;
+    }
+    
+    
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+
+    
+    private void pushAllLeft(TreeNode node) {
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+    }
+}
+
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
+ */
